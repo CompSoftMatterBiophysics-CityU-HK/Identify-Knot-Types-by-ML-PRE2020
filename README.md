@@ -1,4 +1,4 @@
-# Identify-Knot-Types-by-ML-PRE2021
+# Identify-Knot-Types-by-ML-PRE2020
 Source code and dataset for "Identifying knot types of polymer conformations by machine learning" PRE 2020
 
 This paper is published in Physical Review E journal in Febuary 2020, and is featured as **Editors' Suggestion**
