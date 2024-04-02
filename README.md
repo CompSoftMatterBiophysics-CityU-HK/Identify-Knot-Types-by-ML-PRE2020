@@ -24,6 +24,7 @@ This work, featured as the **APS Editors' Suggestion**, represented one of the f
 It has attracted a number of media coverage since.
 - **featured in [Nature's Research Highlight](https://www.nature.com/articles/d41586-020-00483-w)** on 21 February 2020
 - **featured in [APS Physics Interview](https://physics.aps.org/articles/v13/s19)** on 21 February 2020
+- **featured in [City University of Hong Kong Research Stories](https://www.cityu.edu.hk/research/stories/2020/04/16/cityu-scientists-classify-knots-efficiently-artificial-intelligence)** on Apr 16 2020
 - **featured in [Official CityU Research News (in Chinese)](https://mp.weixin.qq.com/s/7Hqq0asBYxdASTVxNUdVLA)** on 29 July 2020
 
 Here we demostrate the training and showcase the generalizability with docker and jupyter notebooks.
