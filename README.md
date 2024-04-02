@@ -20,7 +20,7 @@ The work was published in the Physical Review E journal in Febuary 2020 as a res
 }
 ```
 
-This work, featured as the **Editors' Suggestion**, represented one of the first successful attempts of using deep learning to classify different knot types.
+This work, featured as the **APS Editors' Suggestion**, represented one of the first successful attempts of using deep learning to classify different knot types.
 It has attracted a number of media coverage since.
 - **featured in [Nature's Research Highlight](https://www.nature.com/articles/d41586-020-00483-w)** on 21 February 2020
 - **featured in [APS Physics Interview](https://physics.aps.org/articles/v13/s19)** on 21 February 2020
@@ -59,10 +59,13 @@ tar -xzvf ...
 ## 1. Docker with Compatible TF2+CUDA+Py
 
 We provide a `Dockerfile` to build a docker container based on `tensorflow:2.4.0-gpu-jupyter`.
-The code we used for development from 5 years ago was based on `tensorflow-gpu==2.0.0`, but now we found the `tensorflow:2.4.0-gpu-jupyter` also works.
+The code we used for development from 5 years ago was based on `tensorflow-gpu==2.0.0`, but now we found the docker image `tensorflow:2.4.0-gpu-jupyter` also works.
 The CUDA version for the docker is `CUDA 11`.
+The advantage of using tensorflow with docker is you do not need to worry (too much) about CUDA versions.
+The notebooks from this repo were generated using a laptop GPU (RTX 3080) with CUDA 11.4.
 
-To build the docker, simply run the provided bash script `build.sh` followed by `run.sh`.
+To build the docker, simply run the provided bash script `build.sh`.
+Then launch the docker container by `run.sh`.
 Note that we use `docker -v` flag with mounted volume (current dir) for jupyter dir (`/tf`).
 The files from the current directory are used for the docker in run-time.
 
@@ -78,6 +81,9 @@ bash ./build.sh
 # - the best trained model+weights for inference
 bash ./run.sh
 ```
+
+**`run.sh` will first test if the GPU is avaiable, and then launch a jupyter notebook.**
+Simply follow the text prompts and open the URL in your host web browser: `http://127.0.0.1:8888/?token=...`
 
 ## 2. Training Code (Demo on L60 20K dataset)
 
