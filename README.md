@@ -33,6 +33,8 @@ The data used in the demo are freely accessible at Zenodo, see Data section for 
 
 ## Table of Contents
 
+0. [Data Used in the Demo](#0-data-used-in-the-demo)
+
 ## 0. Data Used in the Demo
 
 We release the following data to accompany this demo repo:
@@ -86,7 +88,13 @@ bash ./run.sh
 **`run.sh` will first test if the GPU is avaiable, and then launch a jupyter notebook.**
 Simply follow the text prompts and open the URL in your host web browser: `http://127.0.0.1:8888/?token=...`
 
-## 2. Training Code (Demo on L60 20K dataset)
+## 2. Training Code (Demo on L60 200K dataset)
+
+We prepared a **jupyter notbook at `./Demo_Train_L60_Classifier.ipynb`**
+showcasing how to train a polymer knot-type classifier based on LSTM with Tensorflow. This tutorial notebook reproduces the **L60 results from Table 1 from our publication**, i.e. training accuracy of ~99%, validation accuracy of ~98%, and evaluation on hold-out testset at ~98% accuracy.
+
+The dataset used for this training notebook are five knot types of length `L60` and each knot type has 200K conformations.
+
 
 ## 3. Best Model with Weights (as trained on L100 2M dataset)
 
