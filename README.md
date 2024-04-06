@@ -1,8 +1,10 @@
-# Identify-Knot-Types-by-ML-PRE2020
+# 🥨 Identify Knot Types by Machine Learning
 
-To mark the 5-year anniversary of the knot type classification project, we provide **a docker, training code, best model with weights, and two showcases of generalizability**.
+![cityuArticleBanner](/assets/CityuArticleBanner.jpg)
 
-The work was published in the Physical Review E journal in Febuary 2020 as a research article titled "Identifying knot types of polymer conformations by machine learning".
+To mark the 5-year anniversary of the knot type classification project, we release this public repository to provide **a docker, training code, best model with weights, and two showcases of generalizability**.
+
+The work was published in the Physical Review E journal in Febuary 2020 as a research article titled ["Identifying knot types of polymer conformations by machine learning"](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.101.022502):
 ```latex
 @article{PhysRevE.101.022502,
   title = {Identifying knot types of polymer conformations by machine learning},
@@ -22,16 +24,16 @@ The work was published in the Physical Review E journal in Febuary 2020 as a res
 
 This work, featured as the **APS Editors' Suggestion**, represented one of the first successful attempts of using deep learning to classify different knot types.
 It has attracted a number of media coverage since.
-- **featured in [Nature's Research Highlight](https://www.nature.com/articles/d41586-020-00483-w)** on 21 February 2020
-- **featured in [APS Physics Interview](https://physics.aps.org/articles/v13/s19)** on 21 February 2020
-- **featured in [City University of Hong Kong Research Stories](https://www.cityu.edu.hk/research/stories/2020/04/16/cityu-scientists-classify-knots-efficiently-artificial-intelligence)** on Apr 16 2020
-- **featured in [Official CityU Research News (in Chinese)](https://mp.weixin.qq.com/s/7Hqq0asBYxdASTVxNUdVLA)** on 29 July 2020
+- 🥨 **featured in [Nature's Research Highlight: _"A neural network unpicks the knots"_](https://www.nature.com/articles/d41586-020-00483-w)** on 21 February 2020
+- 🥨 **featured in [APS Physics Interview: _"Neural Networks Know Their Knots"_](https://physics.aps.org/articles/v13/s19)** on 21 February 2020
+- 🥨 **featured in [City University of Hong Kong Research Stories: _"CityU scientists classify knots efficiently with artificial intelligence"_](https://www.cityu.edu.hk/research/stories/2020/04/16/cityu-scientists-classify-knots-efficiently-artificial-intelligence)** on Apr 16 2020
+- 🥨 **featured in [Official CityU Research News (in Chinese): _"相比传统算法，人工智能分辨纽结快了20倍！"_](https://mp.weixin.qq.com/s/7Hqq0asBYxdASTVxNUdVLA)** on 29 July 2020
 
 Here we demostrate the training and showcase the generalizability with docker and jupyter notebooks.
 The best model with weights are provided in this repo.
 The data used in the demo are freely accessible at Zenodo, see Data section for download and extraction instructions.
 
-## Table of Contents
+## Table of Contents 🥨
 
 0. [Data Used in the Demo](#0-data-used-in-the-demo)
 
@@ -90,10 +92,14 @@ Simply follow the text prompts and open the URL in your host web browser: `http:
 
 ## 2. Training Code (Demo on L60 200K dataset)
 
-We prepared a **jupyter notbook at `./Demo_Train_L60_Classifier.ipynb`**
-showcasing how to train a polymer knot-type classifier based on LSTM with Tensorflow. This tutorial notebook reproduces the **L60 results from Table 1 from our publication**, i.e. training accuracy of ~99%, validation accuracy of ~98%, and evaluation on hold-out testset at ~98% accuracy.
+We prepared a **jupyter notbook at [`./Demo_Train_L60_Classifier.ipynb`](./Demo_Train_L60_Classifier.ipynb)**
+showcasing how to train a polymer knot-type classifier based on LSTM with Tensorflow.
 
 The dataset used for this training notebook are five knot types of length `L60` and each knot type has 200K conformations.
+
+This tutorial notebook reproduces the **L60 results from Table 1 from our publication**, i.e. training accuracy of ~99%, validation accuracy of ~98%, and evaluation on hold-out testset at ~98% accuracy.
+
+![Table1_L60_RNN_99acc](assets/Table1_L60_RNN_99acc.png)
 
 
 ## 3. Best Model with Weights (as trained on L100 2M dataset)
@@ -102,3 +108,4 @@ The dataset used for this training notebook are five knot types of length `L60` 
 
 ## 5. Showcase 2 on Generalizability (trained on L100, predict on L60)
 
+![Fig7_L100trained_predictL60](assets/Fig7_L100trained_predictL60.png)
