@@ -58,7 +58,7 @@ To extract the data from `tar.gz`, run the following command:
 # extract the five knot-type tar.gz files
 cd ./data
 tar -xzvf 1M_L60_Lp4_D9_circular_knot0-31-41-52-51.tar.gz
-tar -xzvf ...
+tar -xzvf Fig11_100K_L100_Lp2_D11_circular_knot0-31-41-52-51.tar.gz
 ```
 
 ## 1. Docker with Compatible TF2+CUDA+Py
@@ -102,10 +102,43 @@ This tutorial notebook reproduces the **L60 results from Table 1 from our public
 ![Table1_L60_RNN_99acc](assets/Table1_L60_RNN_99acc.png)
 
 
-## 3. Best Model with Weights (as trained on L100 2M dataset)
+## 3. Best Model with Weights (trained on L100 2M dataset)
 
-## 4. Showcase 1 on Generalizability (trained on L100 Lp4-D14, predict on Lp2-D11)
+The best RNN model for `L100` was a bidirectional LSTM stack with dropout trained on 2 million conformations for each knot type. The model with weights can be loaded directly (~10 MB) from this repo at `best_models/temp_20191103-175055_L100_2M_0-31-41-52-51-relative_BiLSTM240BiLSTM200Dp20BiLSTM180BiLSTM180BiLSTM100_.h5`,
+using `keras.models.load_model()`:
+
+```py
+# Best RNN model:
+# Nov03 99.59acc BiLSTM stacks
+best_model_dir = "/tf/best_models/"
+save_model_name = best_model_dir + \
+    "temp_20191103-175055_L100_2M_0-31-41-52-51-relative_BiLSTM240BiLSTM200Dp20BiLSTM180BiLSTM180BiLSTM100_.h5"
+
+print("model to be used: ", save_model_name)
+
+model = keras.models.load_model(save_model_name)
+
+model.summary()
+```
+
+## 4. Generalize to a Different Bending Stiffness
+
+This notebook **`Generalize_Bending_Stiffness_Fig11.ipynb`** loads the best weights for a trained model on `L100`, and predicts on unseen new conformations with **a different bending stiffness**.
+
+In the body of the paper, the polymer conformations are
+generated with a persistence length `Lp = 4a`. To examine
+whether our model also works for polymer conformations with a
+different bending stiffness, we generate `20 000` conformations
+of `Lpolymer = 100` and `Lp = 2a` for each of the five knot types.
+Then, we apply the RNN model trained from conformations with `Lp = 4a` to classify these new conformations with
+`Lp = 2a`. The prediction accuracy is above `99%` for every
+knot type, as shown in the Fig. 11 of our PRE publication:
+
+<img src="assets/Fig11_L100_Lp2a_persistence_length.png" alt="Fig11_L100_Lp2a_persistence_length" width="35%"/>
+These results suggest that the
+prediction accuracy of our NN is insensitive to the bending
+stiffness.
 
 ## 5. Showcase 2 on Generalizability (trained on L100, predict on L60)
 
-![Fig7_L100trained_predictL60](assets/Fig7_L100trained_predictL60.png)
+<img src="assets/Fig7_L100trained_predictL60.png" alt="Fig7_L100trained_predictL60" width="35%"/>
