@@ -31,11 +31,16 @@ It has attracted a number of media coverage since.
 
 Here we demostrate the training and showcase the generalizability with docker and jupyter notebooks.
 The best model with weights are provided in this repo.
-The data used in the demo are freely accessible at Zenodo, see Data section for download and extraction instructions.
+The data used in the demo are freely accessible at Zenodo, see [Data](#0-data-used-in-the-demo) section for download and extraction instructions.
 
 ## Table of Contents 🥨
 
 0. [Data Used in the Demo](#0-data-used-in-the-demo)
+1. [Docker Setup](#1-docker-with-compatible-tf2cudapy)
+2. [Training Code](#2-training-code-demo-on-l60-200k-dataset)
+3. [Best Model with Weights](#3-best-model-with-weights-trained-on-l100-2m-dataset)
+4. [Generalize to L60 Sub-length](#4-generalize-to-l60-sub-length)
+5. [Generalize to a Different Bending Stiffness](#5-generalize-to-a-different-bending-stiffness)
 
 ## 0. Data Used in the Demo
 
@@ -67,14 +72,14 @@ tar -xzvf Fig11_100K_L100_Lp2_D11_circular_knot0-31-41-52-51.tar.gz
 
 ## 1. Docker with Compatible TF2+CUDA+Py
 
-We provide a `Dockerfile` to build a docker container based on `tensorflow:2.4.0-gpu-jupyter`.
+We provide a [`./Dockerfile`](./Dockerfile) to build a docker container based on `tensorflow:2.4.0-gpu-jupyter`.
 The code we used for development from 5 years ago was based on `tensorflow-gpu==2.0.0`, but now we found the docker image `tensorflow:2.4.0-gpu-jupyter` also works.
 The CUDA version for the docker is `CUDA 11`.
 The advantage of using tensorflow with docker is you do not need to worry (too much) about CUDA versions.
 The notebooks from this repo were generated using a laptop GPU (RTX 3080) with CUDA 11.4.
 
-To build the docker, simply run the provided bash script `build.sh`.
-Then launch the docker container by `run.sh`.
+To build the docker, simply run the provided bash script [`./build.sh`](./build.sh).
+Then launch the docker container with [`./run.sh`](./run.sh).
 Note that we use `docker -v` flag with mounted volume (current dir) for jupyter dir (`/tf`).
 The files from the current directory are used for the docker in run-time.
 
@@ -127,7 +132,7 @@ model.summary()
 
 ## 4. Generalize to L60 Sub-length
 
-The notebook **[`Generalize_SubLength_L60_Fig7.ipynb`](Generalize_SubLength_L60_Fig7.ipynb)**
+The notebook **[`./Generalize_SubLength_L60_Fig7.ipynb`](./Generalize_SubLength_L60_Fig7.ipynb)**
 showcases the generalizability of `L100` classifier to identify knots in sublength polymer `L60`.
 The model was
 trained using polymer length `L100` and was asked to predict knot type labels on 1 million `L60` polymers.
@@ -137,7 +142,7 @@ This tutorial reproduces the Figure 7 (left panel) from the publication
 
 ## 5. Generalize to a Different Bending Stiffness
 
-This notebook **[`Generalize_Bending_Stiffness_Fig11.ipynb`](Generalize_Bending_Stiffness_Fig11.ipynb)** loads the best weights for a trained model on `L100`, and predicts on unseen new conformations with **a different bending stiffness**.
+This notebook **[`./Generalize_Bending_Stiffness_Fig11.ipynb`](./Generalize_Bending_Stiffness_Fig11.ipynb)** loads the best weights for a trained model on `L100`, and predicts on unseen new conformations with **a different bending stiffness**.
 
 In the body of the paper, the polymer conformations are
 generated with a persistence length `Lp = 4a`. To examine
