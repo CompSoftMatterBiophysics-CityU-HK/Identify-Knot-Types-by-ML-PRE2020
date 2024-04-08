@@ -42,13 +42,17 @@ The data used in the demo are freely accessible at Zenodo, see Data section for 
 We release the following data to accompany this demo repo:
 - L60 circular knots (`L60_Lp4_D9`) five knot types:
   - Each knot type has 200K conformations, so 1 million conformations in total.
+  - zipped as **`1M_L60_Lp4_D9_circular_knot0-31-41-52-51.tar.gz` [Download](https://zenodo.org/records/10938828/files/1M_L60_Lp4_D9_circular_knot0-31-41-52-51.tar.gz?download=1)**
 - L100 circular knots (`L100_Lp2_D11`) five knot types:
   - Each knot type has 20K conformations, so 100K conformations in total.
+  - zipped as **`Fig11_100K_L100_Lp2_D11_circular_knot0-31-41-52-51.tar.gz` [Download](https://zenodo.org/records/10938828/files/Fig11_100K_L100_Lp2_D11_circular_knot0-31-41-52-51.tar.gz?download=1)**
 
 Both the `L60` and `L100` datasets are to classify five knot types: `knot-0`, `knot-31`, `knot-41`, `knot-52`, and `knot-51`.
 Each conformation is represented as a txt file of 3D xyz coordinates.
 
-The data are released as open public data on Zenodo at address:...
+The data are released as open public data on Zenodo at **[https://zenodo.org/records/10938828](https://zenodo.org/records/10938828)**
+* **`1M_L60_Lp4_D9_circular_knot0-31-41-52-51.tar.gz` [Download](https://zenodo.org/records/10938828/files/1M_L60_Lp4_D9_circular_knot0-31-41-52-51.tar.gz?download=1)**
+* **`Fig11_100K_L100_Lp2_D11_circular_knot0-31-41-52-51.tar.gz` [Download](https://zenodo.org/records/10938828/files/Fig11_100K_L100_Lp2_D11_circular_knot0-31-41-52-51.tar.gz?download=1)**
 
 To download the data from Zenodo, either use command line tools line wget or curl, or directly download by clicking. **Download and save to `./data/` folder.**
 
@@ -104,13 +108,13 @@ This tutorial notebook reproduces the **L60 results from Table 1 from our public
 
 ## 3. Best Model with Weights (trained on L100 2M dataset)
 
-The best RNN model for `L100` was a bidirectional LSTM stack with dropout trained on 2 million conformations for each knot type. The model with weights can be loaded directly (~10 MB) from this repo at `best_models/temp_20191103-175055_L100_2M_0-31-41-52-51-relative_BiLSTM240BiLSTM200Dp20BiLSTM180BiLSTM180BiLSTM100_.h5`,
+The best RNN model for `L100` was a bidirectional LSTM stack with dropout trained on 2 million conformations for each knot type. The model with weights can be loaded directly (~10 MB) from this repo at **[`best_models/temp_20191103-175055_L100_2M_0-31-41-52-51-relative_BiLSTM240BiLSTM200Dp20BiLSTM180BiLSTM180BiLSTM100_.h5`](best_models/temp_20191103-175055_L100_2M_0-31-41-52-51-relative_BiLSTM240BiLSTM200Dp20BiLSTM180BiLSTM180BiLSTM100_.h5)**,
 using `keras.models.load_model()`:
 
 ```py
 # Best RNN model:
 # Nov03 99.59acc BiLSTM stacks
-best_model_dir = "/tf/best_models/"
+best_model_dir = "best_models/"
 save_model_name = best_model_dir + \
     "temp_20191103-175055_L100_2M_0-31-41-52-51-relative_BiLSTM240BiLSTM200Dp20BiLSTM180BiLSTM180BiLSTM100_.h5"
 
@@ -121,9 +125,19 @@ model = keras.models.load_model(save_model_name)
 model.summary()
 ```
 
-## 4. Generalize to a Different Bending Stiffness
+## 4. Generalize to L60 Sub-length
 
-This notebook **`Generalize_Bending_Stiffness_Fig11.ipynb`** loads the best weights for a trained model on `L100`, and predicts on unseen new conformations with **a different bending stiffness**.
+The notebook **[`Generalize_SubLength_L60_Fig7.ipynb`](Generalize_SubLength_L60_Fig7.ipynb)**
+showcases the generalizability of `L100` classifier to identify knots in sublength polymer `L60`.
+The model was
+trained using polymer length `L100` and was asked to predict knot type labels on 1 million `L60` polymers.
+This tutorial reproduces the Figure 7 (left panel) from the publication
+
+<img src="assets/Fig7_L100trained_predictL60.png" alt="Fig7_L100trained_predictL60" width="35%"/>
+
+## 5. Generalize to a Different Bending Stiffness
+
+This notebook **[`Generalize_Bending_Stiffness_Fig11.ipynb`](Generalize_Bending_Stiffness_Fig11.ipynb)** loads the best weights for a trained model on `L100`, and predicts on unseen new conformations with **a different bending stiffness**.
 
 In the body of the paper, the polymer conformations are
 generated with a persistence length `Lp = 4a`. To examine
@@ -138,7 +152,3 @@ knot type, as shown in the Fig. 11 of our PRE publication:
 These results suggest that the
 prediction accuracy of our NN is insensitive to the bending
 stiffness.
-
-## 5. Showcase 2 on Generalizability (trained on L100, predict on L60)
-
-<img src="assets/Fig7_L100trained_predictL60.png" alt="Fig7_L100trained_predictL60" width="35%"/>
