@@ -46,28 +46,30 @@ The data used in the demo are freely accessible at Zenodo, see [Data](#0-data-us
 
 We release the following data to accompany this demo repo:
 - L60 circular knots (`L60_Lp4_D9`) five knot types:
+  - Used in Table 1 and Fig. 7 of the publication.
   - Each knot type has 200K conformations, so 1 million conformations in total.
-  - zipped as **`1M_L60_Lp4_D9_circular_knot0-31-41-52-51.tar.gz` [Download](https://zenodo.org/records/10938828/files/1M_L60_Lp4_D9_circular_knot0-31-41-52-51.tar.gz?download=1)**
-- L100 circular knots (`L100_Lp2_D11`) five knot types:
-  - Each knot type has 20K conformations, so 100K conformations in total.
-  - zipped as **`Fig11_100K_L100_Lp2_D11_circular_knot0-31-41-52-51.tar.gz` [Download](https://zenodo.org/records/10938828/files/Fig11_100K_L100_Lp2_D11_circular_knot0-31-41-52-51.tar.gz?download=1)**
+  - Zipped as **`1M_L60_Lp4_D9_circular_knot0-31-41-52-51.tar.gz` [Download](https://zenodo.org/records/10946638)**
+- L100 circular knots (`L100_Lp2_D11`) of persistence length `Lp = 2a`:
+  - Used in Fig. 11 of the publication.
+  - Each knot type has more than 20K conformations, can sample or use all to reproduce Fig. 11 of the paper.
+  - Zipped as **`L100_Lp2_D11_circular_knot0-31-41-52-51.tar.gz` [Download](https://zenodo.org/records/10946638)**
 
 Both the `L60` and `L100` datasets are to classify five knot types: `knot-0`, `knot-31`, `knot-41`, `knot-52`, and `knot-51`.
 Each conformation is represented as a txt file of 3D xyz coordinates.
 
-The data are released as open public data on Zenodo at **[https://zenodo.org/records/10938828](https://zenodo.org/records/10938828)**
-* **`1M_L60_Lp4_D9_circular_knot0-31-41-52-51.tar.gz` [Download](https://zenodo.org/records/10938828/files/1M_L60_Lp4_D9_circular_knot0-31-41-52-51.tar.gz?download=1)**
-* **`Fig11_100K_L100_Lp2_D11_circular_knot0-31-41-52-51.tar.gz` [Download](https://zenodo.org/records/10938828/files/Fig11_100K_L100_Lp2_D11_circular_knot0-31-41-52-51.tar.gz?download=1)**
+The data are released as open public data on Zenodo at **[https://zenodo.org/records/10946638](https://zenodo.org/records/10946638)**
+* **`1M_L60_Lp4_D9_circular_knot0-31-41-52-51.tar.gz` [Download](https://zenodo.org/records/10946638)**
+* **`L100_Lp2_D11_circular_knot0-31-41-52-51.tar.gz` [Download](https://zenodo.org/records/10946638)**
 
-To download the data from Zenodo, either use command line tools line wget or curl, or directly download by clicking. **Download and save to `./data/` folder.**
+To download the data from Zenodo, either use command line tools line `wget` or `curl`, or directly download by clicking the download link. **Download and save to `./data/` folder.**
 
-To extract the data from `tar.gz`, run the following command:
+Extract the `tar.gz` data **inside the `./data/` folder**:
 
 ```sh
 # extract the five knot-type tar.gz files
 cd ./data
 tar -xzvf 1M_L60_Lp4_D9_circular_knot0-31-41-52-51.tar.gz
-tar -xzvf Fig11_100K_L100_Lp2_D11_circular_knot0-31-41-52-51.tar.gz
+tar -xzvf L100_Lp2_D11_circular_knot0-31-41-52-51.tar.gz
 ```
 
 ## 1. Docker with Compatible TF2+CUDA+Py
