@@ -1,0 +1,8 @@
+logs/
+*.npy
+env/
+venv/
+.ipynb_checkpoints*
+
+data/
+
