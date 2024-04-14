@@ -2,7 +2,7 @@
 
 ![cityuArticleBanner](/assets/CityuArticleBanner.jpg)
 
-To mark the 5-year anniversary of the knot type classification project, we release this public repository to provide **a docker, training code, best model with weights, and two showcases of generalizability**.
+To mark the 5-year anniversary of the knot type classification project, we release this public repository to provide **the training code, best model with weights, and two showcases of generalizability** that all run out-of-the-box in a **GPU-enabled docker container**.
 
 The work was published in the Physical Review E journal in Febuary 2020 as a research article titled ["Identifying knot types of polymer conformations by machine learning"](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.101.022502):
 ```latex
@@ -29,8 +29,8 @@ It has attracted a number of media coverage since.
 - 🥨 **featured in [City University of Hong Kong Research Stories: _"CityU scientists classify knots efficiently with artificial intelligence"_](https://www.cityu.edu.hk/research/stories/2020/04/16/cityu-scientists-classify-knots-efficiently-artificial-intelligence)** on Apr 16 2020
 - 🥨 **featured in [Official CityU Research News (in Chinese): _"相比传统算法，人工智能分辨纽结快了20倍！"_](https://mp.weixin.qq.com/s/7Hqq0asBYxdASTVxNUdVLA)** on 29 July 2020
 
-Here we demostrate the training and showcase the generalizability with docker and jupyter notebooks.
-The best model with weights are provided in this repo.
+Here we demostrate the training code and showcase the generalizability with jupyter notebooks that runs in a GPU-enabled docker container (see section [Docker-setup](#1-docker-with-compatible-tf2cudapy)).
+The best model with weights are provided in this repo (see section [Best-Model](#3-best-model-with-weights-trained-on-l100-2m-dataset)).
 The data used in the demo are freely accessible at Zenodo, see [Data](#0-data-used-in-the-demo) section for download and extraction instructions.
 
 ## Table of Contents 🥨
@@ -91,19 +91,14 @@ Note that we use `docker -v` flag with mounted volume (current dir) for jupyter 
 The files from the current directory are used for the docker in run-time.
 
 ```sh
-# create a custom docker image based on:
-# - tensorflow:2.4.0-gpu-jupyter and CUDA 11
-# - misc packages like matplotlib and scikit-learn
+# build the container
 bash ./build.sh
 
-# NOTE: the data are mounted in the next step bash run.sh
-# data mounted are:
-# - knot data folders
-# - the best trained model+weights for inference
+# run jupyter server inside the container (follow instructions on screen)
 bash ./run.sh
 ```
 
-**`run.sh` will first test if the GPU is avaiable, and then launch a jupyter notebook.**
+**`run.sh` will launch a jupyter notebook.**
 Simply follow the text prompts and open the URL in your host web browser: `http://127.0.0.1:8888/?token=...`
 
 ## 2. Training Code (Demo on L60 200K dataset)
@@ -111,7 +106,7 @@ Simply follow the text prompts and open the URL in your host web browser: `http:
 We prepared a **jupyter notbook at [`./Demo_Train_L60_Classifier.ipynb`](./Demo_Train_L60_Classifier.ipynb)**
 showcasing how to train a polymer knot-type classifier based on LSTM with Tensorflow.
 
-The dataset used for this training notebook are five knot types of length `L60` and each knot type has 200K conformations.
+The dataset used for this training notebook comprises five knot types of length `L60` and each knot type has 200K conformations.
 
 This tutorial notebook reproduces the **L60 results from Table 1 from our publication**, i.e. training accuracy of ~99%, validation accuracy of ~98%, and evaluation on hold-out testset at ~98% accuracy.
 
@@ -162,5 +157,5 @@ knot type, as shown in the Fig. 11 of our PRE publication:
 
 <img src="assets/Fig11_L100_Lp2a_persistence_length.png" alt="Fig11_L100_Lp2a_persistence_length" width="35%"/>
 These results suggest that the
-prediction accuracy of our NN is insensitive to the bending
+prediction accuracy of our NN is robust to different bending
 stiffness.
